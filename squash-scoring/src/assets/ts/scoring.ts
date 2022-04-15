@@ -1,7 +1,12 @@
 import player from "./player";
 import rally from "./rally";
+import { Dictionary } from "./webcrap/misccrap";
 
-export const systems = {
+export interface ScoringSystem {
+    score(completedRally:rally): boolean;
+}
+
+export const systems: Dictionary<ScoringSystem> = {
     PAR11: {
         score: (completedRally:rally): boolean => {
             return scorePAR(completedRally, 11);
